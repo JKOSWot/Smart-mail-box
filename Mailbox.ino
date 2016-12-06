@@ -7,12 +7,12 @@
 
 GSM gsmAccess;
 GSM_SMS sms;
-char remoteNumber[20] = "***********";
+char remoteNumber[20] = "***********"; //number where the text is sent
 
-int servoPin = 5;
-Servo Servo1;
+int servoPin = 5; //digital pin which the Servo is connected
+Servo Servo1; //declaring the servo object
 
-String const myUID = "E0 04 79 DE"; // replace this UID with your NFC tag's UID
+String const myUID = "E0 04 79 DE"; // NFC tags UID
 int const greenLedPin = 7; // green led used for correct key notification
 int const redLedPin = 6; // red led used for incorrect key notification
 
@@ -20,12 +20,12 @@ PN532_SPI interface(SPI, 10); // create a SPI interface for the shield with the 
 NfcAdapter nfc = NfcAdapter(interface); // create an NFC adapter object
 
 int y;
-const int input[5] = {A0,A1,A2, A3, A4};
+const int input[5] = {A0,A1,A2, A3, A4}; //array to hold the analog pins
 int result[5];
-int fsrReading;
-int endTotal;
-boolean messageSent = false;
-boolean notConnected = false;
+int fsrReading; //int to hold the FSR readings
+int endTotal; //average reading of the FSRs
+boolean messageSent = false; //boolean to inform whether a message has been sent
+boolean notConnected = false; //boolean to inform whether the SIM has been connected
 
 void setup() {
   //set up connection to serial
@@ -53,7 +53,6 @@ void setup() {
   Serial.println("OK");
   Serial.println("SMS Setup Complete");
   
-  Serial.begin(115200); // start serial comm
   nfc.begin(); // begin NFC comm
   
   // make LED pins outputs
@@ -70,16 +69,19 @@ void setup() {
 }
 
 void loop() {
+  //if statement to decide whether or not to initialise setupSMS()
   if (notConnected = false) {
     setupSMS();
   }
   
-  Servo1.write(0);
+  Servo1.write(0); //set the servo to 0
+  //if statement to decide whether or not to initialise startNFC()
   if (nfc.tagPresent()) { // check if an NFC tag is present on the antenna area
     startNFC(); //initialise startNFC
   }
 }
 
+//method to decide whether to send an SMS depending on FSR readings
 void setupSMS() {
   int total = 0;
   for (y = 0; y < 5; y++) {
@@ -102,6 +104,7 @@ void setupSMS() {
   delay(1000);
 }
 
+//method to send a SMS
 void sendSMS() {
   sms.beginSMS(remoteNumber);
   sms.println("You have mail to collect");
@@ -112,6 +115,7 @@ void sendSMS() {
   messageSent = true;
 }
 
+//method to determine correct key has been detected and to power servo
 void startNFC() {
     NfcTag tag = nfc.read(); // read the NFC tag
     String scannedUID = tag.getUidString(); // get the NFC tag's UID
@@ -126,12 +130,10 @@ void startNFC() {
       digitalWrite(greenLedPin,HIGH);
       delay(500);
       
-      Servo1.write(0);
-      //delay(1000);
-      Servo1.write(45);
-      delay (10000);
-      Servo1.write(0);
-      digitalWrite(greenLedPin,LOW);
+      Servo1.write(45); //turn servo 45 degrees
+      delay (10000); //wait 10 sendonds
+      Servo1.write(0); //reset servo position
+      digitalWrite(greenLedPin,LOW); //turn green LED off
       
     } else {
       // an incorrect NFC tag was used
@@ -140,10 +142,10 @@ void startNFC() {
       digitalWrite(greenLedPin,LOW);
       digitalWrite(redLedPin,HIGH);
 
-      delay(2000);
-      digitalWrite(redLedPin,HIGH);
-      delay(500);
-      digitalWrite(redLedPin,LOW);
+      delay(2000); //wait 2 seconds
+      digitalWrite(redLedPin,HIGH); //turn red LED on
+      delay(500); //wait 0.5 seconds
+      digitalWrite(redLedPin,LOW); //turn red LED off
             }
       delay(2000);
 }
