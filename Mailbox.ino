@@ -7,7 +7,7 @@
 
 GSM gsmAccess;
 GSM_SMS sms;
-char remoteNumber[20] = "07800974945";
+char remoteNumber[20] = "***********";
 
 int servoPin = 5;
 Servo Servo1;
