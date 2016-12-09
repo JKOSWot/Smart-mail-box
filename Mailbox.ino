@@ -70,7 +70,7 @@ void setup() {
 
 void loop() {
   //if statement to decide whether or not to initialise setupSMS()
-  if (notConnected = false) {
+  if (notConnected == false) {
     setupSMS();
   }
   
