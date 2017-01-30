@@ -12,7 +12,7 @@ The components I used in this project were:
 <li>Arduino GSM Shield</li>
 <li>Seeed Studio NFC Shield V2.0</li>
 <li>Servo</li>
-<li>FSR (Force Sense Resistors</li>
+<li>4 FSR (Force Sense Resistor)</li>
 <li>1 Green & 1 Red LED</li>
 <li>4 220R Resistors</li>
 <li>Strip Board</li>
