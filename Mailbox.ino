@@ -42,7 +42,7 @@ void setup() {
     Serial.println("GSM status " + r);
     if (r == GSM_READY)
     {
-      notConnected = false;
+      notConnected == false;
     }
     else
     {
@@ -120,7 +120,7 @@ void startNFC() {
     NfcTag tag = nfc.read(); // read the NFC tag
     String scannedUID = tag.getUidString(); // get the NFC tag's UID
 
-    if( myUID.compareTo(scannedUID) == 0) { // compare the NFC tag's UID with the correct tag's UID (a match exists when compareTo returns 0)
+    if (myUID.compareTo(scannedUID) == 0) { // compare the NFC tag's UID with the correct tag's UID (a match exists when compareTo returns 0)
       // The correct NFC tag was used
       Serial.println("Correct Key");
       // turn on green LED and make sure the RED led is off
