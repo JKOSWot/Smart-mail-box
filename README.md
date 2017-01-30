@@ -13,7 +13,7 @@ When putting together the Arduino Baord and the GSM Shield, please ensure you do
 <li>Pin 3 - GSM TX</li>
 <li>Pin 2 - GSM RX</li>
 <li>Pin 0 & 1 - Not connected</li>
-<ul>
+</ul>
 
 In relation to using the NFC Shield. I used a Seeed Studio NFC Shield V2.0. Again, when connecting to the Arduino Board, do not use:
 <ul>
