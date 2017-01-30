@@ -5,7 +5,19 @@ The aim of this project was to develop an effective solution to getting a notifi
 
 One use of this project in an office environment would be to use it in the pigeon hole system so the owner would get an notification whent hey have mail so they can go and get it. With the current processes Mail can arrive at anytime up to a 2-10 day period.
 
-##Harware
+##Hardware
+The components I used in this project were:
+<ul>
+<li>Arduino Uno</li>
+<li>Arduino GSM Shield</li>
+<li>Seeed Studio NFC Shield V2.0</li>
+<li>Servo</li>
+<li>FSR (Force Sense Resistors</li>
+<li>1 Green & 1 Red LED</li>
+<li>4 220R Resistors</li>
+<li>Strip Board</li>
+</ul>
+
 When putting together the Arduino Baord and the GSM Shield, please ensure you do not use Pins that are used for communication. Avoid using:
 
 <ul>
