@@ -20,7 +20,7 @@ PN532_SPI interface(SPI, 10); // create a SPI interface for the shield with the 
 NfcAdapter nfc = NfcAdapter(interface); // create an NFC adapter object
 
 int y;
-const int input[5] = {A0,A1,A2, A3, A4}; //array to hold the analog pins
+const int input[5] = {A0, A1, A2, A3, A4}; //array to hold the analog pins
 int result[5];
 int fsrReading; //int to hold the FSR readings
 int endTotal; //average reading of the FSRs
@@ -40,28 +40,26 @@ void setup() {
     Serial.println("not Connected");
     int r = gsmAccess.begin();
     Serial.println("GSM status " + r);
-    if (r == GSM_READY)
-    {
+    if (r == GSM_READY) {
       notConnected == false;
-    }
-    else
-    {
+    } else {
       Serial.println("Failed");
     }
     delay(1000);
   }
+
   Serial.println("OK");
   Serial.println("SMS Setup Complete");
   
   nfc.begin(); // begin NFC comm
   
   // make LED pins outputs
-  pinMode(greenLedPin,OUTPUT);
-  pinMode(redLedPin,OUTPUT);
+  pinMode(greenLedPin, OUTPUT);
+  pinMode(redLedPin, OUTPUT);
 
   // turn off the LEDs
-  digitalWrite(greenLedPin,LOW);
-  digitalWrite(redLedPin,LOW);
+  digitalWrite(greenLedPin, LOW);
+  digitalWrite(redLedPin, LOW);
 
   //attach servo to the used pin number
   Servo1.attach(servoPin);
@@ -88,6 +86,7 @@ void setupSMS() {
     result[y] = analogRead(input[y]);
     total += result[y];
   }
+  
   endTotal = (total / 5);
   Serial.println(endTotal);
   delay(1000);
@@ -139,14 +138,13 @@ void startNFC() {
       // an incorrect NFC tag was used
       Serial.println("Incorrect key");
       // turn on red LED and make sure the green LED is off
-      digitalWrite(greenLedPin,LOW);
-      digitalWrite(redLedPin,HIGH);
+      digitalWrite(greenLedPin, LOW);
+      digitalWrite(redLedPin, HIGH);
 
       delay(2000); //wait 2 seconds
-      digitalWrite(redLedPin,HIGH); //turn red LED on
+      digitalWrite(redLedPin, HIGH); //turn red LED on
       delay(500); //wait 0.5 seconds
-      digitalWrite(redLedPin,LOW); //turn red LED off
+      digitalWrite(redLedPin, LOW) //turn red LED off
             }
       delay(2000);
 }
-
